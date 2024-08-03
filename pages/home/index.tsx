@@ -1,45 +1,40 @@
-import React, { useState } from "react";
-import { Cloud, Layout } from "@/components";
-import { LuUser2 as User, LuDownload as Download } from "react-icons/lu";
+import React, { useEffect, useRef, useState } from "react";
+import { Cloud, Hero, Layout, Preload } from "@/components";
 import Image from "next/image";
+import { gsap } from "gsap";
 
 import ProfileImage from "@/public/images/profile.png";
 import ProfileImageOri from "@/public/images/profile-ori.png";
 
 const HomePage = () => {
   const [isProfile, setProfile] = useState<boolean>(true);
+  const [isIntro, setIsintro] = useState<boolean>(true);
+  const mainRef = useRef<HTMLDivElement | null>(null);
+  const introRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const tl = gsap.timeline();
+    tl.to(introRef.current, { duration: 1, scale: 1, opacity: 1 })
+      .to(introRef.current, { duration: 1, scale: 1.5, opacity: 0 })
+      .to(mainRef.current, { duration: 0, css: { display: "block" } })
+      .to(mainRef.current, { duration: 1, opacity: 1, scale: 1 });
+
+    gsap.set(mainRef.current, { opacity: 0, scale: 0.8 });
+    return () => {
+      setTimeout(() => {
+        setIsintro(false);
+      }, 4000);
+    };
+  }, []);
 
   return (
     <Layout title="Hieroglyph">
-      <Cloud customClass="bg-[url('/images/cloud-1.png')] w-[40%] h-[20%] left-[50%] top-[5%] min-[375px]:top-[10%] xl:left-[60%]" />
-      <Cloud customClass="bg-[url('/images/cloud-2.png')] w-[50%] h-[20%] left-[10%] top-[32%] min-[375px]:top-[42%] xl:top-[55%] xl:left-[30%]" />
-      <section className={`text-primary-600 mt-[72px]`}>
-        <div className="bg-[url('/images/ghibli-house.jpg')] bg-cover bg-no-repeat bg-center bg-neutral-200 xl:px-16 xl:py-32 px-8 py-8 md:h-[820px] flex justify-between xl:justify-between md:gap-8 gap-2 items-center xl:mx-32 mx-4 rounded-[30px] md:rounded-[56px] xl:flex-row flex-col-reverse translatex-1/">
-          <div>
-            <h1 className="xl:text-6xl xl:text-left text-4xl text-center">
-              Hi, I am <span className="font-bold text-neutral-50">Dhan</span>,
-              A{" "}
-              <span className="font-bold text-primary-600">
-                Frontend Developer
-              </span>{" "}
-              and
-              <span className="font-bold text-error-500"> UI/UX Designer</span>
-            </h1>
-            <p className="xl:text-2xl text-base xl:text-left textt text-center my-4">
-              Developer and designer. Specialize in Web Frontend Development and
-              UI/UX Design
-            </p>
-            <div className="flex xl:flex-row flex-col gap-4 items-center">
-              <button className="bg-primary-600 border border-primary-600  text-base px-3 py-2 text text-neutral-50 flex gap-2 items-center rounded font-semibold xl:w-fit w-full justify-center">
-                <User size={18} />
-                About Me
-              </button>
-              <button className="border-2 text-base px-3 py-2 text text-primary-600 flex gap-2 items-center rounded font-semibold xl:w-fit w-full justify-center">
-                <Download size={18} />
-                Download CV
-              </button>
-            </div>
-          </div>
+      {/* {isIntro && <Preload />} */}
+      <section ref={mainRef} className={`text-primary-600 p-4 xl:p-16 h-dvh`}>
+        <div className="bg-[url('/images/ghibli-house.jpg')] bg-cover bg-no-repeat bg-center bg-neutral-200 xl:px-16 xl:py-32 px-8 h-full flex justify-between xl:justify-between md:gap-8 gap-2 items-center rounded-[30px] xl:rounded-[56px] xl:flex-row flex-col-reverse translatex-1/">
+          <Cloud customClass="bg-[url('/images/cloud-1.png')] w-[40%] h-[20%] left-[60%] top-[5%] min-[375px]:top-[0px] xl:left-[70%] xl:top-[10%]" />
+          <Cloud customClass="bg-[url('/images/cloud-2.png')] w-[50%] h-[20%] left-[20%] top-[32%] min-[375px]:top-[36%] xl:top-[65%] xl:left-[40%]" />
+          <Hero />
           <Image
             className="w-[80%] sm:w-[50%] md:w-[50%] min-[1024px]:w-[35%] xl:w-auto"
             alt="profile"
@@ -49,6 +44,7 @@ const HomePage = () => {
           />
         </div>
       </section>
+      {/* <section className="h-screen w-screen"></section> */}
     </Layout>
   );
 };
