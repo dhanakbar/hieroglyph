@@ -4,8 +4,10 @@ import React, { useState } from "react";
 import _ from "lodash";
 
 import { AddressBook, List, PaintBrush, Path, X } from "@phosphor-icons/react";
+import useScroll from "@/hooks/useScroll";
 
 const Navbar = () => {
+  const scroll = useScroll();
   const [showMenu, setShowMenu] = useState<boolean>(false);
   const path = usePathname();
   const menus = [
@@ -37,15 +39,17 @@ const Navbar = () => {
 
   return (
     <>
-      <List
-        size={36}
-        className="text-primary-500 cursor-pointer absolute top-8 right-10 z-10 xl:hidden"
-        onClick={() => setShowMenu(!showMenu)}
-      />
+      <div
+        className={`text-primary-500 cursor-pointer fixed top-0 z-10 xl:hidden w-full px-10 h-24 flex justify-end items-center ${
+          scroll && "backdrop-blur-sm"
+        }`}
+      >
+        <List size={36} onClick={() => setShowMenu(!showMenu)} />
+      </div>
       <nav
         className={`fixed shadow-lg xl:shadow-none top-0 right-0 transition-all duration-300 ease-in-out ${
           showMenu ? "w-1/2" : "w-0"
-        } xl:w-full xl:py-4 py-16 xl:flex xl:justify-center xl:h-fit h-screen z-50 bg-background-100 overflow-hidden`}
+        } xl:w-full xl:py-4 py-16 xl:flex xl:justify-center xl:h-fit h-screen z-20 bg-background-100 overflow-hidden`}
       >
         <X
           size={36}
