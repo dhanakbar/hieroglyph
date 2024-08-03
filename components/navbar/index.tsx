@@ -43,7 +43,7 @@ const Navbar = () => {
         onClick={() => setShowMenu(!showMenu)}
       />
       <nav
-        className={`absolute top-0 right-0 transition-all duration-300 ease-in-out ${
+        className={`fixed shadow-lg xl:shadow-none top-0 right-0 transition-all duration-300 ease-in-out ${
           showMenu ? "w-1/2" : "w-0"
         } xl:w-full xl:py-4 py-16 xl:flex xl:justify-center xl:h-fit h-screen z-50 bg-background-100 overflow-hidden`}
       >

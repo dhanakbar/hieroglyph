@@ -4,7 +4,7 @@ import { gsap } from "gsap";
 const Preload: React.FC<React.HTMLProps<HTMLDivElement>> = () => {
   useEffect(() => {
     const tl = gsap.timeline();
-    tl.to(".ball", { scale: 0, duration: 0.4 })
+    tl.to(".ball", { scale: 0, duration: 2 })
       .to(".ball", {
         scale: 100,
         duration: 1,
