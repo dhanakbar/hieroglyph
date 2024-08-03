@@ -5,10 +5,10 @@ import Image from "next/image";
 
 import ProfileImage from "@/public/images/profile.png";
 import ProfileImageOri from "@/public/images/profile-ori.png";
-import { profile } from "console";
 
 const HomePage = () => {
   const [isProfile, setProfile] = useState<boolean>(true);
+
   return (
     <Layout title="Hieroglyph">
       <Cloud customClass="bg-[url('/images/cloud-1.png')] w-[40%] h-[20%] left-[50%] top-[5%] min-[375px]:top-[10%] xl:left-[60%]" />
