@@ -4,18 +4,18 @@ import Head from "next/head";
 import Navbar from "../navbar";
 
 import { LayoutType } from "@/types/components/layout_type";
-import { List } from "@phosphor-icons/react";
+import Footer from "../Footer";
 
 const Layout = ({ children, title }: LayoutType) => {
-  const [showMenu, setShowMenu] = useState<boolean>(false);
   return (
-    <>
+    <main className="overflow-hidden">
       <Head>
         <title>{title}</title>
       </Head>
       <Navbar />
       {children}
-    </>
+      <Footer />
+    </main>
   );
 };
 

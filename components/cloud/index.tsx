@@ -1,18 +1,12 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import { CloudType } from "@/types/components/cloud_type";
-import gsap from "gsap";
 
 const Cloud = ({ customClass, config }: CloudType) => {
-  const gsapRef = React.useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    gsap.to(gsapRef.current, config);
-  }, []);
+  useEffect(() => {}, [config]);
 
   return (
     <motion.div
-      ref={gsapRef}
       className={`absolute bg-contain bg-no-repeat bg-center ${customClass}`}
       drag
       dragConstraints={{
@@ -21,6 +15,9 @@ const Cloud = ({ customClass, config }: CloudType) => {
         right: 20,
         bottom: 80,
       }}
+      initial={{ x: -50 }}
+      animate={{ x: 50 }}
+      transition={config}
     ></motion.div>
   );
 };

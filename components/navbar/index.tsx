@@ -40,7 +40,7 @@ const Navbar = () => {
   return (
     <>
       <div
-        className={`text-primary-500 cursor-pointer fixed top-0 z-10 xl:hidden w-full px-10 h-24 flex justify-end items-center ${
+        className={`text-primary-500 cursor-pointer fixed top-0 z-20 xl:hidden w-full px-10 h-24 flex justify-end items-center ${
           scroll && "backdrop-blur-sm"
         }`}
       >
@@ -49,7 +49,7 @@ const Navbar = () => {
       <nav
         className={`fixed shadow-lg xl:shadow-none top-0 right-0 transition-all duration-300 ease-in-out ${
           showMenu ? "w-1/2" : "w-0"
-        } xl:w-full xl:py-4 py-16 xl:flex xl:justify-center xl:h-fit h-screen z-20 bg-background-100 overflow-hidden`}
+        } xl:w-full xl:py-4 py-16 xl:flex xl:justify-center xl:h-fit h-screen z-20 overflow-hidden backdrop-blur-sm`}
       >
         <X
           size={36}
