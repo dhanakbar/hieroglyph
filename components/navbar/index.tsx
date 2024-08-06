@@ -3,7 +3,14 @@ import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 import _ from "lodash";
 
-import { AddressBook, List, PaintBrush, Path, X } from "@phosphor-icons/react";
+import {
+  AddressBook,
+  House,
+  List,
+  PaintBrush,
+  Path,
+  X,
+} from "@phosphor-icons/react";
 import useScroll from "@/hooks/useScroll";
 
 const Navbar = () => {
@@ -14,25 +21,25 @@ const Navbar = () => {
     {
       isActive: path === "/",
       path: "/",
-      name: "Home",
-      icon: null,
+      name: <span className="text-base">Home</span>,
+      icon: <House size={24} className="text-primary-500" />,
     },
     {
       isActive: path === "/journey",
       path: "/journey",
-      name: "Journey",
+      name: <span className="text-base">Journey</span>,
       icon: <Path size={24} className="text-primary-500" />,
     },
     {
       isActive: path === "/portfolio",
       path: "/portfolio",
-      name: "Portfolio",
+      name: <span className="text-base">Portfolio</span>,
       icon: <PaintBrush size={24} className="text-primary-500" />,
     },
     {
       isActive: path === "/contact",
       path: "/contact",
-      name: "Contact",
+      name: <span className="text-base">Contact</span>,
       icon: <AddressBook size={24} className="text-primary-500" />,
     },
   ];
